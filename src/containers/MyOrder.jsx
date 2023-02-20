@@ -19,7 +19,7 @@ const MyOrder = () => {
 	return (
 		<aside className="MyOrder">
 			<div className="title-container">
-				<img src={flechitaIcon} alt="arrow" />
+				<img src={flechitaIcon} alt="arrow" onClick={() => null} />
 				<p className="my-order-title">My order</p>
 			</div>
 			<div className="my-order-content">

@@ -25,6 +25,9 @@ const useInitialState = () => {
         })
     }
 
+    const isInCart = (product) => {
+        return state.cart.includes(product);
+    }
     const setToggleProductDetail = (product) => {
         if(state.toggleProductDetail){
             if(!product){
@@ -56,6 +59,7 @@ const useInitialState = () => {
         state,
         addToCart,
         removeFromCart,
+        isInCart,
         setToggleProductDetail
     }
 }

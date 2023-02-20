@@ -1,8 +1,6 @@
 const path = require('path');
 const HtmlWepackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -12,7 +10,7 @@ module.exports = {
         publicPath: '/',
         clean: true
     },
-    mode: 'production',
+    mode: 'development',
     resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
@@ -62,12 +60,8 @@ module.exports = {
             filename: '[name].css'
         }),
     ],
-    optimization: {
-        minimize: true,
-        minimizer: [
-            new CssMinimizerPlugin(),
-            new TerserPlugin(),
-        ]
-       
+    devServer:{
+        historyApiFallback: true,
+        
     }
 }

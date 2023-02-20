@@ -8,7 +8,7 @@ import flechitaIcon from '@icons/flechita.svg';
 
 const MyOrder = () => {
 
-	const {state} = useContext(AppContext);
+	const {state, handleToggleCart} = useContext(AppContext);
 
 	const sumTotal = () => {
 		const reducer = (accumalator, currentValue) => accumalator + currentValue.price;
@@ -19,12 +19,14 @@ const MyOrder = () => {
 	return (
 		<aside className="MyOrder">
 			<div className="title-container">
-				<img src={flechitaIcon} alt="arrow" onClick={() => null} />
+				<img src={flechitaIcon} alt="arrow" onClick={() => handleToggleCart()} />
 				<p className="my-order-title">My order</p>
 			</div>
 			<div className="my-order-content">
-			{state.cart.map( product => 
+				<div className='my-order-products'>
+					{state.cart.map( product => 
 					<OrderItem product={product} key={`orderItem-${product.id}`}/>)}
+				</div>
 				<div className="order">
 					<p>
 						<span>Total</span>

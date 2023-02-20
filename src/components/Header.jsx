@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import '@styles/Header.scss';
 import Menu from '@components/Menu';
-
+import MobileMenu from '@components/MobileMenu';
 import MyOrder from '@containers/MyOrder'
 import menuIcon from '@icons/icon_menu.svg';
 import logo from '@logos/logo_yard_sale.svg';
@@ -11,22 +11,25 @@ import AppContext from '../context/AppContext';
 const Header = () => {
 
     const [toggle, setToggle] = useState(false);
-    const [toggleCart, setToggleCart] = useState(false);
-    const {state} = useContext(AppContext);
+    const [toggleMobileMenu, setToggleMobileMenu] = useState(false);
+    const {state, handleToggleCart} = useContext(AppContext);
 
     const handleToggle = () => {
-        setToggleCart(false)
+        setToggleCart(false);
+        setToggleMobileMenu(false);
         setToggle(!toggle);
     }
-    const handleToogleCart = () => {
-        setToggle(false)
-        setToggleCart(!toggleCart);
+
+    const handleToggleMobileMenu = () => {
+        setToggle(false);
+        setToggleCart(false);
+        setToggleMobileMenu(!toggleMobileMenu);
 
     }
 
     return(
         <nav>
-            <img src={menuIcon} alt="menu" className="menu" />
+            <img src={menuIcon} alt="menu" className="menu" onClick={() => handleToggleMobileMenu()}/>
             <div className="navbar-left">
                 <img src={logo} alt="logo" className="nav-logo" />
                 <ul>
@@ -55,14 +58,15 @@ const Header = () => {
                     <li className="navbar-email" onClick={handleToggle}>
                         platzi@example.com
                     </li>
-                    <li className="navbar-shopping-cart" onClick={handleToogleCart}>
+                    <li className="navbar-shopping-cart" onClick={()=>handleToggleCart()}>
                         <img src={shoppingCarticon} alt="shopping cart" />
                         {state.cart.length > 0 ? <div>{state.cart.length}</div> : null}
                     </li>
                 </ul>
             </div>
             {toggle ? <Menu /> : null}
-            {toggleCart ? <MyOrder /> : null}
+            {state.toggleCart ? <MyOrder /> : null}
+            {toggleMobileMenu ? <MobileMenu /> : null}
         </nav>
     );
 }

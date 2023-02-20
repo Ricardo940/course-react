@@ -10,7 +10,16 @@
 	right: 0;
 	bottom: 0;
 	border-radius: 6px;
-	border: 1px solid var(--very-light-pink)
+	border: 1px solid var(--very-light-pink);
+	position: fixed;
+	transition: 1s ease;
+	animation: swipeLeft 1s ease forwards;
+}
+.my-order-products{
+	overflow-y: scroll;
+    max-height: 60vh;
+	padding-right: 24px;
+    scroll-behavior: smooth;
 }
 .title-container {
 	display: flex;

@@ -3,12 +3,14 @@ import { useState } from "react";
 const initialState = {
     cart: [],
     toggleProductDetail: false,
+    toggleCart: false,
     productDetail: null
 }
 
 const useInitialState = () => {
     
     const [state, setState] = useState(initialState);
+
 
 
     const addToCart = (payload) => {
@@ -28,6 +30,14 @@ const useInitialState = () => {
     const isInCart = (product) => {
         return state.cart.includes(product);
     }
+
+    const handleToggleCart = () => {
+        setState({
+            ...state, 
+            toggleCart: !state.toggleCart
+        })
+    }
+
     const setToggleProductDetail = (product) => {
         if(state.toggleProductDetail){
             if(!product){
@@ -60,7 +70,8 @@ const useInitialState = () => {
         addToCart,
         removeFromCart,
         isInCart,
-        setToggleProductDetail
+        setToggleProductDetail,
+        handleToggleCart
     }
 }
 

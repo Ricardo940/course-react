@@ -15,14 +15,14 @@ const Header = () => {
     const {state, handleToggleCart} = useContext(AppContext);
 
     const handleToggle = () => {
-        setToggleCart(false);
         setToggleMobileMenu(false);
+        state.toggleCart = false;
         setToggle(!toggle);
     }
 
     const handleToggleMobileMenu = () => {
         setToggle(false);
-        setToggleCart(false);
+        state.toggleCart = false;
         setToggleMobileMenu(!toggleMobileMenu);
 
     }
